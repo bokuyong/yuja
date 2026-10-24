@@ -19,30 +19,31 @@ final class NoTextLossTests: XCTestCase {
             throw XCTSkip("YUJA_CORPUS_DIR 미설정")
         }
         let root = URL(fileURLWithPath: (dir as NSString).expandingTildeInPath)
-        let files = Fixtures.regularFiles(under: root).map(\.1).filter { $0.pathExtension.lowercased() == "hwpx" }
-        XCTAssertFalse(files.isEmpty, "\(root.path)에 .hwpx가 없습니다")
+        let files = Fixtures.regularFiles(under: root).map(\.1).filter { ["hwpx", "hwp"].contains($0.pathExtension.lowercased()) }
+        XCTAssertFalse(files.isEmpty, "\(root.path)에 .hwpx/.hwp가 없습니다")
         for file in files { try assertNoTextLoss(file) }
     }
 
     private func assertNoTextLoss(_ url: URL, file: StaticString = #filePath, line: UInt = #line) throws {
-        let fragments = try TextProbe.fragments(ofHWPX: url)
+        let isHWP = url.pathExtension.lowercased() == "hwp"
+        let fragments = isHWP ? try TextProbe.fragments(ofHWP: url) : try TextProbe.fragments(ofHWPX: url)
         let document = try Converter.load(url).document
 
         let md = MarkdownExporter().export(document)
-        let mdMissing = TextProbe.missing(fragments, in: md, markdown: true)
+        let mdMissing = TextProbe.missing(fragments, in: md, markdown: true, wordsInOrder: isHWP)
         XCTAssertTrue(mdMissing.isEmpty, "\(url.lastPathComponent) MD 유실: \(mdMissing.prefix(10))", file: file, line: line)
 
         let html = MarkdownExporter(options: MarkdownOptions(tableStyle: .html)).export(document)
-        let htmlMissing = TextProbe.missing(fragments, in: Self.unescapeHTML(html), markdown: true)
+        let htmlMissing = TextProbe.missing(fragments, in: Self.unescapeHTML(html), markdown: true, wordsInOrder: isHWP)
         XCTAssertTrue(htmlMissing.isEmpty, "\(url.lastPathComponent) MD(html 표) 유실: \(htmlMissing.prefix(10))", file: file, line: line)
 
         let txt = TextExporter().export(document)
-        let txtMissing = TextProbe.missing(fragments, in: txt, markdown: false)
+        let txtMissing = TextProbe.missing(fragments, in: txt, markdown: false, wordsInOrder: isHWP)
         XCTAssertTrue(txtMissing.isEmpty, "\(url.lastPathComponent) TXT 유실: \(txtMissing.prefix(10))", file: file, line: line)
 
         let parts = try DocxExporter().parts(document, resources: nil)
         let body = String(decoding: parts.first { $0.path == "word/document.xml" }!.data, as: UTF8.self)
-        let docxMissing = TextProbe.missing(fragments, in: DocxExporterTests.text(ofDocumentXML: body), markdown: false)
+        let docxMissing = TextProbe.missing(fragments, in: DocxExporterTests.text(ofDocumentXML: body), markdown: false, wordsInOrder: isHWP)
         XCTAssertTrue(docxMissing.isEmpty, "\(url.lastPathComponent) DOCX 유실: \(docxMissing.prefix(10))", file: file, line: line)
     }
 

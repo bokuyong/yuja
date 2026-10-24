@@ -144,15 +144,16 @@ struct Cell { var blocks: [Block]; var colSpan: Int; var rowSpan: Int }
 ### Phase 3 — HWP 5.0 바이너리 (5~8일)
 결정 지점: **먼저 hwp-rs(MIT) 상태 확인** → 유지보수·표 파싱 수준이 충분하면 Rust 정적 라이브러리 + C FFI로 붙이고, 아니면 Swift 자체 구현.
 자체 구현 시:
-- [ ] CFB 리더: 헤더, FAT/DIFAT/miniFAT, 디렉터리 엔트리, 스트림 읽기 (스펙: MS-CFB 공개 문서)
-- [ ] `FileHeader`: 버전, 압축·암호 플래그(암호면 명확한 에러)
-- [ ] 레코드 파서(태그/레벨/크기, 확장 크기 처리)
-- [ ] `DocInfo`: 글꼴·charShape·paraShape·style → heading/list 판별 근거
-- [ ] `BodyText/SectionN`: PARA_HEADER/PARA_TEXT/PARA_CHAR_SHAPE/CTRL_HEADER(표 `tbl `, 그림 `gso `)/TABLE/LIST_HEADER
-- [ ] 제어문자 처리(0x0A 줄바꿈, 0x0D 문단, 0x09 탭, 0x0B/0x0F~ 확장 제어 등 — 스펙 표로 확인)
-- [ ] BinData 스트림(압축 여부 개별) → 이미지 추출
-- [ ] HWPX와 **동일 IR**로 수렴 → 익스포터 재사용
+- [x] CFB 리더: 헤더, FAT/DIFAT/miniFAT, 디렉터리 엔트리, 스트림 읽기 (스펙: MS-CFB 공개 문서)
+- [x] `FileHeader`: 버전, 압축·암호 플래그(암호면 명확한 에러)
+- [x] 레코드 파서(태그/레벨/크기, 확장 크기 처리)
+- [x] `DocInfo`: 글꼴·charShape·paraShape·style → heading/list 판별 근거
+- [x] `BodyText/SectionN`: PARA_HEADER/PARA_TEXT/PARA_CHAR_SHAPE/CTRL_HEADER(표 `tbl `, 그림 `gso `)/TABLE/LIST_HEADER
+- [x] 제어문자 처리(0x0A 줄바꿈, 0x0D 문단, 0x09 탭, 0x0B/0x0F~ 확장 제어 등 — 스펙 표로 확인)
+- [x] BinData 스트림(압축 여부 개별) → 이미지 추출
+- [x] HWPX와 **동일 IR**로 수렴 → 익스포터 재사용
 - 완료 기준: 동일 문서의 HWP/HWPX 버전이 같은 Markdown을 내는 교차 테스트
+  - 2026-10-24: 결정 = Swift 자체 구현(+배포용 복호화). 합성 HWP(테스트용 작성기)와 HWPX 픽스처의 MD/TXT 일치 확인. 실제 HWP/HWPX 쌍은 아직 없음 — 받으면 추가
 
 ### Phase 4 — PDF 출력 (단순 렌더) (2일)
 - [ ] IR → NSAttributedString → `NSPrintOperation`/`CGPDFContext`로 페이징. 글꼴은 시스템 Apple SD Gothic Neo 고정

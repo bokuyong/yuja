@@ -213,7 +213,8 @@ public struct MarkdownExporter {
         // 같은 강조끼리 합친다 (밑줄은 Markdown에 없으므로 무시).
         var merged: [Run] = []
         for run in runs {
-            if let last = merged.last, last.bold == run.bold, last.italic == run.italic, last.strike == run.strike {
+            if let last = merged.last, !last.equation, !run.equation,
+               last.bold == run.bold, last.italic == run.italic, last.strike == run.strike {
                 merged[merged.count - 1].text += run.text
             } else {
                 merged.append(run)
@@ -221,6 +222,7 @@ public struct MarkdownExporter {
         }
 
         return merged.map { run in
+            if run.equation { return Self.codeSpan(run.text) }
             let text = Self.escape(run.text, escapeTilde: escapeTilde)
             guard emphasis, run.bold || run.italic || run.strike, run.hasVisibleText else { return text }
             let open = (run.strike ? "~~" : "") + (run.bold && run.italic ? "***" : run.bold ? "**" : run.italic ? "*" : "")
@@ -303,6 +305,19 @@ public struct MarkdownExporter {
         while start > 0 && chars[start - 1] == "_" { start -= 1 }
         while end + 1 < chars.count && chars[end + 1] == "_" { end += 1 }
         return end - start + 1
+    }
+
+    /// 수식 스크립트 → 인라인 코드. 안에 백틱이 있으면 더 긴 백틱 울타리를 쓴다.
+    static func codeSpan(_ text: String) -> String {
+        let flat = text.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "\r", with: " ")
+        var longest = 0, current = 0
+        for ch in flat {
+            current = ch == "`" ? current + 1 : 0
+            longest = max(longest, current)
+        }
+        let fence = String(repeating: "`", count: longest + 1)
+        let pad = flat.hasPrefix("`") || flat.hasSuffix("`") ? " " : ""
+        return fence + pad + flat + pad + fence
     }
 
     /// "10~20" 처럼 물결이 하나뿐이면 취소선이 될 수 없으므로 이스케이프하지 않는다.

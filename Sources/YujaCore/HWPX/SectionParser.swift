@@ -22,77 +22,6 @@ struct SectionParser {
     }
 }
 
-// MARK: - 빌더
-
-private enum Segment {
-    case text(Run)
-    case block(Block)
-}
-
-/// 컨테이너(구역, 셀, 글상자 …) 안의 항목. 목록 문단은 나중에 묶어서 Block.list로 만든다.
-private enum Item {
-    case block(Block)
-    case listItem(level: Int, ordered: Bool, runs: [Run])
-}
-
-private final class ParagraphBuilder {
-    let shape: ParaShape
-    let pageBreak: Bool
-    var charShape = CharShape()
-    var segments: [Segment] = []
-    /// 각주·글상자 등 문단 흐름 밖의 내용. 문단 뒤에 붙인다.
-    var trailing: [Block] = []
-
-    init(shape: ParaShape, pageBreak: Bool) {
-        self.shape = shape
-        self.pageBreak = pageBreak
-    }
-
-    func appendText(_ text: String) {
-        guard !text.isEmpty else { return }
-        let c = charShape
-        if case .text(var last)? = segments.last,
-           last.bold == c.bold, last.italic == c.italic, last.underline == c.underline, last.strike == c.strike {
-            last.text += text
-            segments[segments.count - 1] = .text(last)
-        } else {
-            segments.append(.text(Run(text, bold: c.bold, italic: c.italic, underline: c.underline, strike: c.strike)))
-        }
-    }
-
-    func items() -> [Item] {
-        var out: [Item] = []
-        if pageBreak { out.append(.block(.pageBreak)) }
-
-        var runs: [Run] = []
-        func flushRuns() {
-            guard !runs.isEmpty else { return }
-            switch shape.heading {
-            case .outline:
-                out.append(.block(.heading(level: min(shape.level + 1, 6), runs: runs)))
-            case .number:
-                out.append(.listItem(level: shape.level, ordered: true, runs: runs))
-            case .bullet:
-                out.append(.listItem(level: shape.level, ordered: false, runs: runs))
-            case .none:
-                out.append(.block(.paragraph(runs: runs, align: shape.align)))
-            }
-            runs = []
-        }
-
-        for segment in segments {
-            switch segment {
-            case .text(let run): runs.append(run)
-            case .block(let block):
-                flushRuns()
-                out.append(.block(block))
-            }
-        }
-        flushRuns()
-        out += trailing.map(Item.block)
-        return out
-    }
-}
 
 private final class TableBuilder {
     var rows: [[Cell]] = []
@@ -120,7 +49,7 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
     }
 
     func finish() -> [Block] {
-        fold(containers.first ?? [])
+        BlockBuilder.fold(containers.first ?? [])
     }
 
     // MARK: XMLParserDelegate
@@ -206,7 +135,11 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
             textDepth -= 1
         case "script":
             let text = (script ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-            if !text.isEmpty { appendBlock(.raw(text)) }
+            if let paragraph = paragraphs.last {
+                paragraph.appendEquation(text)
+            } else if !text.isEmpty {
+                appendBlock(.raw(text))
+            }
             script = nil
         case "pic":
             if let picture = pictures.popLast(), var image = picture.image {
@@ -215,7 +148,7 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
             }
 
         case "subList":
-            let blocks = fold(containers.removeLast())
+            let blocks = BlockBuilder.fold(containers.removeLast())
             let parent = elements.count >= 2 ? elements[elements.count - 2] : nil
             if parent == "tc" {
                 tables.last?.cell.blocks += blocks
@@ -252,50 +185,5 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
         } else {
             containers[containers.count - 1].append(.block(block))
         }
-    }
-
-    /// 연속된 목록 문단을 Block.list로 묶는다.
-    private func fold(_ items: [Item]) -> [Block] {
-        var out: [Block] = []
-        var pending: [(level: Int, ordered: Bool, runs: [Run])] = []
-
-        func flush() {
-            if !pending.isEmpty { out.append(Self.buildList(pending[...])) }
-            pending = []
-        }
-
-        for item in items {
-            switch item {
-            case .listItem(let level, let ordered, let runs):
-                pending.append((level, ordered, runs))
-            case .block(let block):
-                flush()
-                out.append(block)
-            }
-        }
-        flush()
-        return out
-    }
-
-    private static func buildList(_ entries: ArraySlice<(level: Int, ordered: Bool, runs: [Run])>) -> Block {
-        let base = entries.map(\.level).min() ?? 0
-        var items: [[Block]] = []
-        var index = entries.startIndex
-
-        while index < entries.endIndex {
-            let entry = entries[index]
-            if entry.level <= base {
-                items.append([.paragraph(runs: entry.runs, align: nil)])
-                index += 1
-            } else {
-                var end = index
-                while end < entries.endIndex && entries[end].level > base { end += 1 }
-                let nested = buildList(entries[index..<end])
-                if items.isEmpty { items.append([]) }
-                items[items.count - 1].append(nested)
-                index = end
-            }
-        }
-        return .list(items: items, ordered: entries.first?.ordered ?? false)
     }
 }

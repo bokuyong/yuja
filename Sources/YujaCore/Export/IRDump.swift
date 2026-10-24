@@ -29,7 +29,8 @@ public enum IRDump {
             lines.append("\(pad)heading(\(level)) \(quote(runs.text))")
         case .paragraph(let runs, let align):
             let styles = Set(runs.flatMap { run -> [String] in
-                [run.bold ? "b" : nil, run.italic ? "i" : nil, run.underline ? "u" : nil, run.strike ? "s" : nil].compactMap { $0 }
+                [run.bold ? "b" : nil, run.italic ? "i" : nil, run.underline ? "u" : nil, run.strike ? "s" : nil,
+                 run.equation ? "eq" : nil].compactMap { $0 }
             }).sorted().joined()
             let tags = [align.map(\.rawValue), styles.isEmpty ? nil : styles].compactMap { $0 }
             lines.append("\(pad)paragraph\(tags.isEmpty ? "" : "[" + tags.joined(separator: ",") + "]") \(quote(runs.text))")

@@ -54,13 +54,17 @@ public struct Run: Equatable, Sendable {
     public var italic: Bool
     public var underline: Bool
     public var strike: Bool
+    /// 수식 스크립트(한컴 수식 문법). 글자처럼 문장 안에 놓이므로 런으로 둔다.
+    public var equation: Bool
 
-    public init(_ text: String, bold: Bool = false, italic: Bool = false, underline: Bool = false, strike: Bool = false) {
+    public init(_ text: String, bold: Bool = false, italic: Bool = false, underline: Bool = false, strike: Bool = false,
+                equation: Bool = false) {
         self.text = text
         self.bold = bold
         self.italic = italic
         self.underline = underline
         self.strike = strike
+        self.equation = equation
     }
 }
 

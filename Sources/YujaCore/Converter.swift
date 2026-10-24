@@ -42,7 +42,7 @@ public enum Converter {
     public static func load(_ url: URL) throws -> LoadedDocument {
         switch try Detect.format(of: url) {
         case .hwpx: return try HWPXReader.read(url)
-        case .hwp5: throw YujaError.notImplemented("HWP 5.0 읽기 (Phase 3 예정)")
+        case .hwp5: return try HWP5Reader.read(url)
         }
     }
 
