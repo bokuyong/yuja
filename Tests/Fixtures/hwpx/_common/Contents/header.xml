@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!-- 실제 한컴 header.xml에서 변환에 쓰는 부분만 남긴 축약본 -->
+<hh:head xmlns:hh="http://www.hancom.co.kr/hwpml/2011/head" xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hc="http://www.hancom.co.kr/hwpml/2011/core" version="1.4" secCnt="1">
+  <hh:refList>
+    <hh:charProperties itemCnt="5">
+      <!-- 0: 보통 -->
+      <hh:charPr id="0" height="1000" textColor="#000000">
+        <hh:underline type="NONE" shape="SOLID" color="#000000"/>
+        <hh:strikeout shape="NONE" color="#000000"/>
+      </hh:charPr>
+      <!-- 1: 굵게 -->
+      <hh:charPr id="1" height="1000" textColor="#000000">
+        <hh:bold/>
+        <hh:underline type="NONE" shape="SOLID" color="#000000"/>
+        <hh:strikeout shape="NONE" color="#000000"/>
+      </hh:charPr>
+      <!-- 2: 기울임 -->
+      <hh:charPr id="2" height="1000" textColor="#000000">
+        <hh:italic/>
+        <hh:underline type="NONE" shape="SOLID" color="#000000"/>
+        <hh:strikeout shape="NONE" color="#000000"/>
+      </hh:charPr>
+      <!-- 3: 굵게 + 밑줄 -->
+      <hh:charPr id="3" height="1000" textColor="#000000">
+        <hh:bold/>
+        <hh:underline type="BOTTOM" shape="SOLID" color="#000000"/>
+        <hh:strikeout shape="NONE" color="#000000"/>
+      </hh:charPr>
+      <!-- 4: 취소선 -->
+      <hh:charPr id="4" height="1000" textColor="#000000">
+        <hh:underline type="NONE" shape="SOLID" color="#000000"/>
+        <hh:strikeout shape="SOLID" color="#000000"/>
+      </hh:charPr>
+    </hh:charProperties>
+    <hh:paraProperties itemCnt="7">
+      <!-- 0: 바탕글 -->
+      <hh:paraPr id="0">
+        <hh:align horizontal="JUSTIFY" vertical="BASELINE"/>
+        <hh:heading type="NONE" idRef="0" level="0"/>
+        <hp:switch>
+          <hp:case hp:required-namespace="http://www.hancom.co.kr/hwpml/2016/HwpUnitChar"><hh:margin/></hp:case>
+          <hp:default><hh:margin/></hp:default>
+        </hp:switch>
+      </hh:paraPr>
+      <!-- 1: 개요 1 -->
+      <hh:paraPr id="1"><hh:align horizontal="LEFT" vertical="BASELINE"/><hh:heading type="OUTLINE" idRef="0" level="0"/></hh:paraPr>
+      <!-- 2: 개요 2 -->
+      <hh:paraPr id="2"><hh:align horizontal="LEFT" vertical="BASELINE"/><hh:heading type="OUTLINE" idRef="0" level="1"/></hh:paraPr>
+      <!-- 3: 글머리표 1수준 -->
+      <hh:paraPr id="3"><hh:align horizontal="LEFT" vertical="BASELINE"/><hh:heading type="BULLET" idRef="1" level="0"/></hh:paraPr>
+      <!-- 4: 글머리표 2수준 -->
+      <hh:paraPr id="4"><hh:align horizontal="LEFT" vertical="BASELINE"/><hh:heading type="BULLET" idRef="1" level="1"/></hh:paraPr>
+      <!-- 5: 문단 번호 1수준 -->
+      <hh:paraPr id="5"><hh:align horizontal="LEFT" vertical="BASELINE"/><hh:heading type="NUMBER" idRef="1" level="0"/></hh:paraPr>
+      <!-- 6: 가운데 정렬 -->
+      <hh:paraPr id="6"><hh:align horizontal="CENTER" vertical="BASELINE"/><hh:heading type="NONE" idRef="0" level="0"/></hh:paraPr>
+    </hh:paraProperties>
+  </hh:refList>
+  <hh:styles itemCnt="3">
+    <hh:style id="0" type="PARA" name="바탕글" engName="Normal" paraPrIDRef="0" charPrIDRef="0"/>
+    <hh:style id="1" type="PARA" name="개요 1" engName="Outline 1" paraPrIDRef="1" charPrIDRef="0"/>
+    <hh:style id="2" type="PARA" name="개요 2" engName="Outline 2" paraPrIDRef="2" charPrIDRef="0"/>
+  </hh:styles>
+</hh:head>

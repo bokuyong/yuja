@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<hs:sec xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section" xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hc="http://www.hancom.co.kr/hwpml/2011/core">
+  <hp:p paraPrIDRef="0"><hp:run charPrIDRef="0"><hp:t>PNG 그림(그대로 복사):</hp:t></hp:run></hp:p>
+
+  <!-- 글자처럼 취급하는 그림 -->
+  <hp:p paraPrIDRef="6">
+    <hp:run charPrIDRef="0">
+      <hp:pic id="10" zOrder="0" numberingType="PICTURE">
+        <hp:shapeComment>그림입니다. 원본 그림의 이름: logo.png</hp:shapeComment>
+        <hc:img binaryItemIDRef="image1" bright="0" contrast="0" effect="REAL_PIC" alpha="0"/>
+      </hp:pic>
+      <hp:t/>
+    </hp:run>
+  </hp:p>
+
+  <hp:p paraPrIDRef="0"><hp:run charPrIDRef="0"><hp:t>BMP 그림(PNG로 변환), 표 안·묶음 개체 안:</hp:t></hp:run></hp:p>
+
+  <hp:p paraPrIDRef="0">
+    <hp:run charPrIDRef="0">
+      <hp:tbl id="20" rowCnt="1" colCnt="2">
+        <hp:tr>
+          <hp:tc>
+            <hp:subList>
+              <hp:p><hp:run charPrIDRef="0"><hp:t>예시 1</hp:t></hp:run></hp:p>
+              <hp:p>
+                <hp:run charPrIDRef="0">
+                  <hp:container id="30">
+                    <hp:pic id="31"><hc:img binaryItemIDRef="image2"/></hp:pic>
+                    <hp:pic id="32"><hc:img binaryItemIDRef="image1"/></hp:pic>
+                  </hp:container>
+                </hp:run>
+              </hp:p>
+            </hp:subList>
+            <hp:cellSpan colSpan="1" rowSpan="1"/>
+          </hp:tc>
+          <hp:tc>
+            <hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>같은 그림을 두 번 써도 파일은 하나</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellSpan colSpan="1" rowSpan="1"/>
+          </hp:tc>
+        </hp:tr>
+      </hp:tbl>
+    </hp:run>
+  </hp:p>
+</hs:sec>

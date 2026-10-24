@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<hs:sec xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section" xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hc="http://www.hancom.co.kr/hwpml/2011/core">
+  <hp:p paraPrIDRef="1" styleIDRef="1"><hp:run charPrIDRef="0"><hp:t>제출 서류</hp:t></hp:run></hp:p>
+
+  <!-- 글머리표 2수준 중첩 -->
+  <hp:p paraPrIDRef="3"><hp:run charPrIDRef="0"><hp:t>사업자등록증</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="3"><hp:run charPrIDRef="0"><hp:t>재무제표</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="4"><hp:run charPrIDRef="0"><hp:t>최근 3년 손익계산서</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="4"><hp:run charPrIDRef="1"><hp:t>감사보고서</hp:t></hp:run><hp:run charPrIDRef="0"><hp:t> (해당 시)</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="3"><hp:run charPrIDRef="0"><hp:t>대표자 신분증 사본</hp:t></hp:run></hp:p>
+
+  <!-- 일반 문단이 목록을 끊는다 -->
+  <hp:p paraPrIDRef="0"><hp:run charPrIDRef="0"><hp:t>평가 절차는 다음과 같다.</hp:t></hp:run></hp:p>
+
+  <!-- 문단 번호 -->
+  <hp:p paraPrIDRef="5"><hp:run charPrIDRef="0"><hp:t>서류 평가</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="5"><hp:run charPrIDRef="0"><hp:t>발표 평가</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="4"><hp:run charPrIDRef="0"><hp:t>10분 발표, 5분 질의</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="5"><hp:run charPrIDRef="0"><hp:t>최종 선정</hp:t></hp:run></hp:p>
+
+  <!-- 하위 수준부터 시작하는 목록 -->
+  <hp:p paraPrIDRef="0"><hp:run charPrIDRef="0"><hp:t>참고:</hp:t></hp:run></hp:p>
+  <hp:p paraPrIDRef="4"><hp:run charPrIDRef="0"><hp:t>들여쓴 항목만 있는 목록</hp:t></hp:run></hp:p>
+</hs:sec>

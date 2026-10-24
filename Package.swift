@@ -28,7 +28,10 @@ let package = Package(
         ),
         .testTarget(
             name: "YujaCoreTests",
-            dependencies: ["YujaCore"]
+            dependencies: [
+                "YujaCore",
+                .product(name: "ZIPFoundation", package: "ZIPFoundation"),
+            ]
         ),
     ]
 )

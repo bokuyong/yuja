@@ -110,26 +110,27 @@ struct Cell { var blocks: [Block]; var colSpan: Int; var rowSpan: Int }
 ## 4. 단계별 계획
 
 ### Phase 0 — 부트스트랩 (0.5일)
-- [ ] `swift package init` → YujaCore(lib) + yuja(executable) 타깃
-- [ ] 의존성: `swift-argument-parser`, ZIP은 `ZIPFoundation`(MIT) 또는 Foundation `Archive` — 선택 후 기록
-- [ ] CI: GitHub Actions macOS 러너에서 `swift build && swift test`
-- [ ] `Tests/Fixtures/`에 샘플 파일 수집 — **사용자가 제공**: 정부과제 공고문 HWP 2~3개, 표 많은 HWPX 2~3개, 이미지 포함 1개, 목록 포함 1개. 없으면 hwpxlib로 생성 (Phase 0에서 사용자에게 요청)
+- [x] `swift package init` → YujaCore(lib) + yuja(executable) 타깃
+- [x] 의존성: `swift-argument-parser`, ZIP은 `ZIPFoundation`(MIT) 또는 Foundation `Archive` — 선택 후 기록
+- [x] CI: GitHub Actions macOS 러너에서 `swift build && swift test`
+- [x] `Tests/Fixtures/`에 샘플 파일 수집 — **사용자가 제공**: 정부과제 공고문 HWP 2~3개, 표 많은 HWPX 2~3개, 이미지 포함 1개, 목록 포함 1개. 없으면 hwpxlib로 생성 (Phase 0에서 사용자에게 요청)
 - 완료 기준: `swift test` 통과(빈 테스트), CI 녹색
 
 ### Phase 1 — HWPX → Markdown/TXT (CLI) (3~5일)
-- [ ] ZIP 열기 → `content.hpf` 파싱 → section 순서 확보
-- [ ] `header.xml` 파싱: paraPr/charPr/style 테이블 구축 (제목 스타일명 "개요 1~7", "제목" 등 → heading 레벨 매핑; 글머리표/번호 매기기 → list)
-- [ ] `sectionN.xml` 스트리밍 파싱(XMLParser 델리게이트) → IR
+- [x] ZIP 열기 → `content.hpf` 파싱 → section 순서 확보
+- [x] `header.xml` 파싱: paraPr/charPr/style 테이블 구축 (제목 스타일명 "개요 1~7", "제목" 등 → heading 레벨 매핑; 글머리표/번호 매기기 → list)
+- [x] `sectionN.xml` 스트리밍 파싱(XMLParser 델리게이트) → IR
   - 문단/런/텍스트, 줄바꿈(`hp:lineBreak`), 탭
   - 표: colSpan/rowSpan 보존, 셀 내 중첩 문단
   - 이미지: BinData 추출 → `<출력파일명>_assets/img_N.png` 저장, IR에 경로
   - 해석 불가 요소는 `.raw`로 텍스트만 보존 (유실 0 원칙)
-- [ ] MarkdownExporter
+- [x] MarkdownExporter
   - heading → `#`, 표 → GFM 표 (병합 셀은 `colSpan` 시 빈 셀 채움 + 셀 텍스트에 `(↔2)` 같은 표기 옵션), 목록 → `-`/`1.`
   - 옵션: `--flat-tables`(병합 무시) / `--html-tables`(병합 셀을 HTML `<table>`로)
-- [ ] TextExporter: 서식 제거, 표는 탭 구분
-- [ ] CLI: `yuja convert in.hwpx --to md [--out path] [--assets-dir]`, `yuja inspect in.hwpx`(구조 덤프)
-- [ ] 골든 테스트: 픽스처마다 기대 `.md` 저장, diff로 회귀 검출
+  - → 구현: 기본이 평탄화(GFM), `--table-style html`, `--span-marks`로 정리함
+- [x] TextExporter: 서식 제거, 표는 탭 구분
+- [x] CLI: `yuja convert in.hwpx --to md [--out path] [--assets-dir]`, `yuja inspect in.hwpx`(구조 덤프)
+- [x] 골든 테스트: 픽스처마다 기대 `.md` 저장, diff로 회귀 검출
 - 완료 기준: 픽스처 전부 변환 성공, 텍스트 유실 0 (원본 텍스트 전수 추출 후 출력에 포함 여부 검사하는 테스트 추가)
 
 ### Phase 2 — DOCX 출력 (2~3일)

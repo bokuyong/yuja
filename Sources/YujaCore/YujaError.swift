@@ -7,6 +7,7 @@ public enum YujaError: Error, Equatable, LocalizedError {
     case legacyHWP3
     case corrupted(String)
     case notImplemented(String)
+    case writeFailed(String)
 
     public var errorDescription: String? {
         switch self {
@@ -22,6 +23,8 @@ public enum YujaError: Error, Equatable, LocalizedError {
             return "문서가 손상되었거나 읽을 수 없습니다: \(detail)"
         case .notImplemented(let feature):
             return "아직 구현되지 않은 기능입니다: \(feature)"
+        case .writeFailed(let path):
+            return "파일을 저장할 수 없습니다: \(path)"
         }
     }
 }

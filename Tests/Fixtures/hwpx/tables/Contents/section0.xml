@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<hs:sec xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section" xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hc="http://www.hancom.co.kr/hwpml/2011/core">
+  <!-- 1×1 제목 상자: 표를 벗기고 내용만 -->
+  <hp:p id="0" paraPrIDRef="0" styleIDRef="0">
+    <hp:run charPrIDRef="0">
+      <hp:tbl id="1" rowCnt="1" colCnt="1" cellSpacing="0" borderFillIDRef="1">
+        <hp:sz width="50000" height="5000"/>
+        <hp:tr>
+          <hp:tc name="" header="0" borderFillIDRef="1">
+            <hp:subList id="" textDirection="HORIZONTAL" vertAlign="CENTER">
+              <hp:p id="0" paraPrIDRef="6" styleIDRef="0"><hp:run charPrIDRef="1"><hp:t>- 2026년 창업지원 사업 -</hp:t></hp:run></hp:p>
+              <hp:p id="0" paraPrIDRef="6" styleIDRef="0"><hp:run charPrIDRef="1"><hp:t>사업 신청서</hp:t></hp:run></hp:p>
+            </hp:subList>
+            <hp:cellAddr colAddr="0" rowAddr="0"/>
+            <hp:cellSpan colSpan="1" rowSpan="1"/>
+            <hp:cellSz width="50000" height="5000"/>
+          </hp:tc>
+        </hp:tr>
+      </hp:tbl>
+      <hp:t/>
+    </hp:run>
+  </hp:p>
+
+  <!-- 병합 셀 표
+       | 구분 (rowSpan 2) | 항목 (colSpan 2)   | 비고 |
+       |                  | 금액     | 부가세   |      |
+       | 재료비           | 1,000    | 100      | 예시 |
+       | 합계 (colSpan 2)            | 100      | (빈 칸) |
+  -->
+  <hp:p id="0" paraPrIDRef="0" styleIDRef="0">
+    <hp:run charPrIDRef="0">
+      <hp:tbl id="2" rowCnt="4" colCnt="4">
+        <hp:tr>
+          <hp:tc><hp:subList><hp:p paraPrIDRef="6"><hp:run charPrIDRef="1"><hp:t>구분</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="0" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="2"/></hp:tc>
+          <hp:tc><hp:subList><hp:p paraPrIDRef="6"><hp:run charPrIDRef="1"><hp:t>항목</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="1" rowAddr="0"/><hp:cellSpan colSpan="2" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p paraPrIDRef="6"><hp:run charPrIDRef="1"><hp:t>비고</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="3" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+        </hp:tr>
+        <hp:tr>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>금액</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="1" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>부가세</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="2" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"/></hp:p></hp:subList>
+            <hp:cellAddr colAddr="3" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+        </hp:tr>
+        <hp:tr>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>재료비</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="0" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>1,000</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="1" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>100</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="2" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>예시</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="3" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+        </hp:tr>
+        <hp:tr>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="1"><hp:t>합계</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="0" rowAddr="3"/><hp:cellSpan colSpan="2" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>100</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="2" rowAddr="3"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"/></hp:p></hp:subList>
+            <hp:cellAddr colAddr="3" rowAddr="3"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+        </hp:tr>
+      </hp:tbl>
+    </hp:run>
+  </hp:p>
+
+  <!-- 한 문단에 텍스트 + 표 + 텍스트, 셀 안에 여러 문단·줄바꿈·파이프·중첩 표 -->
+  <hp:p id="0" paraPrIDRef="0" styleIDRef="0">
+    <hp:run charPrIDRef="0">
+      <hp:t>표 앞 문장.</hp:t>
+      <hp:tbl id="3" rowCnt="2" colCnt="2">
+        <hp:tr>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="1"><hp:t>항목</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="0" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="1"><hp:t>내용</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="1" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+        </hp:tr>
+        <hp:tr>
+          <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>세부 내역</hp:t></hp:run></hp:p></hp:subList>
+            <hp:cellAddr colAddr="0" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+          <hp:tc>
+            <hp:subList>
+              <hp:p><hp:run charPrIDRef="0"><hp:t>첫 문단<hp:lineBreak/>같은 문단 둘째 줄</hp:t></hp:run></hp:p>
+              <hp:p><hp:run charPrIDRef="0"><hp:t>A | B 구분</hp:t></hp:run></hp:p>
+              <hp:p>
+                <hp:run charPrIDRef="0">
+                  <hp:tbl id="4" rowCnt="2" colCnt="2">
+                    <hp:tr>
+                      <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>내부1</hp:t></hp:run></hp:p></hp:subList><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+                      <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>내부2</hp:t></hp:run></hp:p></hp:subList><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+                    </hp:tr>
+                    <hp:tr>
+                      <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>내부3</hp:t></hp:run></hp:p></hp:subList><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+                      <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>내부4</hp:t></hp:run></hp:p></hp:subList><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+                    </hp:tr>
+                  </hp:tbl>
+                </hp:run>
+              </hp:p>
+            </hp:subList>
+            <hp:cellAddr colAddr="1" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/>
+          </hp:tc>
+        </hp:tr>
+      </hp:tbl>
+      <hp:t>표 뒤 문장.</hp:t>
+    </hp:run>
+  </hp:p>
+</hs:sec>

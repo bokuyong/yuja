@@ -12,8 +12,12 @@ PLAN.md의 Phase 순서를 따른다. Phase를 넘어가기 전에 완료 기준
 
 ## 빌드/테스트
 - swift build / swift test (YujaCore, CLI)
+  - 이 체크아웃은 iCloud 동기화 폴더(~/Documents) 안이라 `.build`의 테스트 번들에 File Provider가 xattr을 붙여 codesign이 실패한다.
+    로컬에서는 `--scratch-path ~/Library/Caches/yuja-build`를 붙인다. CI는 영향 없음.
 - App/Yuja는 xcodebuild -scheme Yuja
+- 픽스처 구조와 골든 갱신 방법: Tests/Fixtures/README.md
 - 테스트 픽스처 변경 시 기대 .md도 같이 갱신하고 diff를 PR 설명에 남긴다.
+- 실문서 텍스트 유실 검사: `YUJA_CORPUS_DIR=<폴더> swift test --filter NoTextLossTests` (저장소에 못 넣는 문서용)
 
 ## 코드 규칙
 - Swift 5.9, macOS 13+. 외부 의존성 추가는 사유를 CLAUDE.md에 기록.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<opf:package xmlns:opf="http://www.idpf.org/2007/opf/" version="" unique-identifier="" id="">
+  <opf:metadata>
+    <opf:title>유자 테스트 문서</opf:title>
+    <opf:language>ko</opf:language>
+    <opf:meta name="creator" content="text">Yuja</opf:meta>
+  </opf:metadata>
+  <opf:manifest>
+    <opf:item id="header" href="Contents/header.xml" media-type="application/xml"/>
+    <opf:item id="image1" href="BinData/image1.png" media-type="image/png" isEmbeded="1"/>
+    <opf:item id="image2" href="BinData/image2.bmp" media-type="image/bmp" isEmbeded="1"/>
+    <opf:item id="section0" href="Contents/section0.xml" media-type="application/xml"/>
+  </opf:manifest>
+  <opf:spine>
+    <opf:itemref idref="header" linear="yes"/>
+    <opf:itemref idref="section0" linear="yes"/>
+  </opf:spine>
+</opf:package>
