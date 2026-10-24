@@ -13,8 +13,7 @@
 <w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">성명: ________ (서명란 밑줄), 변수_이름, *별표*, `백틱`, C:\경로</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">&lt;기업명&gt; 그대로, &lt;b&gt;태그&lt;/b&gt;는 이스케이프, [붙임](1) 링크 방지, [참고] 그대로</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">- 직접 입력한 글머리표</w:t></w:r></w:p>
-<w:p><w:r><w:br w:type="page"/></w:r></w:p>
-<w:p><w:pPr><w:pStyle w:val="Heading2"/></w:pPr><w:r><w:t xml:space="preserve">개체와 컨트롤</w:t></w:r></w:p>
+<w:p><w:pPr><w:pStyle w:val="Heading2"/><w:pageBreakBefore/></w:pPr><w:r><w:t xml:space="preserve">개체와 컨트롤</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">☑ 동의함 ☐ 동의하지 않음</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">합계: 1,000,000원</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">신형 표기 본문</w:t></w:r></w:p>

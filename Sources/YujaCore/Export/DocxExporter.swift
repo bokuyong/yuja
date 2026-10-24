@@ -54,6 +54,7 @@ public struct DocxExporter {
             ("word/document.xml", Data(body.utf8)),
             ("word/styles.xml", Data(DocxTemplates.styles.utf8)),
             ("word/numbering.xml", Data(DocxTemplates.numbering(orderedLists: builder.orderedLists).utf8)),
+            ("word/settings.xml", Data(DocxTemplates.settings.utf8)),
             ("word/_rels/document.xml.rels",
              Data(DocxTemplates.documentRels(images: builder.media.map { ($0.relID, "media/" + $0.name) }).utf8)),
         ]
@@ -80,6 +81,9 @@ struct DocxBodyBuilder {
     private var xml = ""
     private var mediaBySource: [String: Int] = [:]
     private var drawingCount = 0
+    /// 쪽 나눔은 빈 문단 대신 다음 문단의 pageBreakBefore로 낸다.
+    /// (빈 나눔 문단이 꽉 찬 쪽 끝에 걸리면 빈 쪽이 하나 더 생긴다)
+    private var pendingPageBreak = false
 
     static let bulletNumID = 1
     /// 1 twip = 635 EMU, 1pt = 12700 EMU, 96dpi 1px = 9525 EMU
@@ -134,7 +138,8 @@ struct DocxBodyBuilder {
             image(ref, maxWidth: maxWidth)
 
         case .pageBreak:
-            xml += "<w:p><w:r><w:br w:type=\"page\"/></w:r></w:p>\n"
+            // 문서 맨 앞의 쪽 나눔은 빈 첫 쪽만 만든다
+            if !xml.isEmpty { pendingPageBreak = true }
 
         case .raw(let text):
             guard text.contains(where: { !$0.isWhitespace }) else { return }
@@ -146,6 +151,7 @@ struct DocxBodyBuilder {
                                     numbering: (numId: Int, level: Int)? = nil, indentLevel: Int? = nil) {
         var pPr = ""
         if let style { pPr += "<w:pStyle w:val=\"\(style)\"/>" }
+        pPr += takePageBreak()
         if let numbering {
             pPr += "<w:numPr><w:ilvl w:val=\"\(numbering.level)\"/><w:numId w:val=\"\(numbering.numId)\"/></w:numPr>"
         }
@@ -153,6 +159,13 @@ struct DocxBodyBuilder {
         if let jc = Self.justification(align) { pPr += "<w:jc w:val=\"\(jc)\"/>" }
 
         xml += "<w:p>" + (pPr.isEmpty ? "" : "<w:pPr>\(pPr)</w:pPr>") + runs.map(Self.run).joined() + "</w:p>\n"
+    }
+
+    /// 대기 중인 쪽 나눔이 있으면 pPr 조각을 돌려주고 비운다.
+    private mutating func takePageBreak() -> String {
+        guard pendingPageBreak else { return "" }
+        pendingPageBreak = false
+        return "<w:pageBreakBefore/>"
     }
 
     private static func justification(_ align: Align?) -> String? {
@@ -230,6 +243,11 @@ struct DocxBodyBuilder {
         let grid = TableGrid(table)
         let columns = grid.columnCount
         guard columns > 0, !grid.slots.isEmpty else { return }
+        // 표에는 pageBreakBefore를 줄 수 없으므로 줄 높이를 최소로 한 문단에 싣는다.
+        let pageBreak = takePageBreak()
+        if !pageBreak.isEmpty {
+            xml += "<w:p><w:pPr>\(pageBreak)<w:spacing w:before=\"0\" w:after=\"0\" w:line=\"20\" w:lineRule=\"exact\"/></w:pPr></w:p>\n"
+        }
         let colWidths = Self.columnWidths(grid, maxWidth: width)
         func spanWidth(_ c: Int, _ span: Int) -> Int { colWidths[c..<(c + span)].reduce(0, +) }
 
@@ -323,8 +341,9 @@ struct DocxBodyBuilder {
 
         drawingCount += 1
         let id = drawingCount
-        xml += """
-        <w:p><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0">\
+        let pageBreak = takePageBreak()
+        xml += (pageBreak.isEmpty ? "<w:p>" : "<w:p><w:pPr>\(pageBreak)</w:pPr>") + """
+        <w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0">\
         <wp:extent cx="\(w)" cy="\(h)"/><wp:docPr id="\(id)" name="그림 \(id)"/>\
         <wp:cNvGraphicFramePr><a:graphicFrameLocks noChangeAspect="1"/></wp:cNvGraphicFramePr>\
         <a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">\

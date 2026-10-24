@@ -57,7 +57,7 @@ final class DocxExporterTests: XCTestCase {
             let archive = try Archive(url: docx, accessMode: .read)
             let paths = Set(archive.map(\.path))
             for required in ["[Content_Types].xml", "_rels/.rels", "word/document.xml", "word/styles.xml",
-                             "word/numbering.xml", "word/_rels/document.xml.rels", "docProps/core.xml"] {
+                             "word/numbering.xml", "word/settings.xml", "word/_rels/document.xml.rels", "docProps/core.xml"] {
                 XCTAssertTrue(paths.contains(required), "\(name): \(required) 없음")
             }
             for path in paths where path.hasSuffix(".xml") || path.hasSuffix(".rels") {
@@ -181,6 +181,24 @@ final class DocxExporterTests: XCTestCase {
         let xml = try documentXML([.paragraph(runs: [Run("x", bold: true, italic: true, underline: true, strike: true)], align: .center)])
         XCTAssertTrue(xml.contains("<w:rPr><w:b/><w:bCs/><w:i/><w:iCs/><w:strike/><w:u w:val=\"single\"/></w:rPr>"))
         XCTAssertTrue(xml.contains("<w:pPr><w:jc w:val=\"center\"/></w:pPr>"))
+    }
+
+    func testSettingsDeclareModernCompatibilityMode() throws {
+        let parts = try DocxExporter().parts(Document(), resources: nil)
+        let settings = String(decoding: parts.first { $0.path == "word/settings.xml" }!.data, as: UTF8.self)
+        XCTAssertTrue(settings.contains("w:name=\"compatibilityMode\" w:uri=\"http://schemas.microsoft.com/office/word\" w:val=\"15\""))
+    }
+
+    /// 쪽 나눔은 다음 문단의 pageBreakBefore로 (빈 나눔 문단 → Word에서 빈 쪽이 생길 수 있음)
+    func testPageBreakBecomesPageBreakBefore() throws {
+        let p = { (t: String) in Block.paragraph(runs: [Run(t)], align: nil) }
+        let xml = try documentXML([.pageBreak, p("첫 쪽"), .pageBreak, p("둘째 쪽"),
+                                   .pageBreak, .table(Table(rows: [[Cell(), Cell()]]))])
+        XCTAssertFalse(xml.contains("w:type=\"page\""))
+        // 문서 맨 앞 나눔은 무시 → 2개
+        XCTAssertEqual(xml.components(separatedBy: "<w:pageBreakBefore/>").count - 1, 2)
+        XCTAssertTrue(xml.contains("<w:p><w:pPr><w:pageBreakBefore/></w:pPr><w:r><w:t xml:space=\"preserve\">둘째 쪽</w:t>"))
+        XCTAssertTrue(xml.contains("<w:pageBreakBefore/><w:spacing w:before=\"0\" w:after=\"0\" w:line=\"20\" w:lineRule=\"exact\"/></w:pPr></w:p>\n<w:tbl>"))
     }
 
     func testControlCharactersAreStripped() {
