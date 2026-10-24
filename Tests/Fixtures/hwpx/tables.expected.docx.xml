@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+<w:body>
+<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="9026" w:type="dxa"/><w:tblBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideH w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideV w:val="single" w:sz="4" w:space="0" w:color="auto"/></w:tblBorders><w:tblLayout w:type="fixed"/><w:tblLook w:val="04A0" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/></w:tblPr><w:tblGrid><w:gridCol w:w="9026"/></w:tblGrid>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="9026" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">- 2026년 창업지원 사업 -</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">사업 신청서</w:t></w:r></w:p>
+</w:tc></w:tr>
+</w:tbl>
+<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="9024" w:type="dxa"/><w:tblBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideH w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideV w:val="single" w:sz="4" w:space="0" w:color="auto"/></w:tblBorders><w:tblLayout w:type="fixed"/><w:tblLook w:val="04A0" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/></w:tblPr><w:tblGrid><w:gridCol w:w="1805"/><w:gridCol w:w="2707"/><w:gridCol w:w="2707"/><w:gridCol w:w="1805"/></w:tblGrid>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/><w:vMerge w:val="restart"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">구분</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="5414" w:type="dxa"/><w:gridSpan w:val="2"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">항목</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">비고</w:t></w:r></w:p>
+</w:tc></w:tr>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/><w:vMerge/></w:tcPr><w:p/></w:tc><w:tc><w:tcPr><w:tcW w:w="2707" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">금액</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="2707" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">부가세</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/></w:tcPr><w:p/></w:tc></w:tr>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">재료비</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="2707" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">1,000</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="2707" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">100</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">예시</w:t></w:r></w:p>
+</w:tc></w:tr>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="4512" w:type="dxa"/><w:gridSpan w:val="2"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">합계</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="2707" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">100</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="1805" w:type="dxa"/></w:tcPr><w:p/></w:tc></w:tr>
+</w:tbl>
+<w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">표 앞 문장.</w:t></w:r></w:p>
+<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="9026" w:type="dxa"/><w:tblBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideH w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideV w:val="single" w:sz="4" w:space="0" w:color="auto"/></w:tblBorders><w:tblLayout w:type="fixed"/><w:tblLook w:val="04A0" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/></w:tblPr><w:tblGrid><w:gridCol w:w="4513"/><w:gridCol w:w="4513"/></w:tblGrid>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="4513" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">항목</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="4513" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space="preserve">내용</w:t></w:r></w:p>
+</w:tc></w:tr>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="4513" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">세부 내역</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="4513" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">첫 문단</w:t><w:br/><w:t xml:space="preserve">같은 문단 둘째 줄</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">A | B 구분</w:t></w:r></w:p>
+<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="4296" w:type="dxa"/><w:tblBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideH w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:insideV w:val="single" w:sz="4" w:space="0" w:color="auto"/></w:tblBorders><w:tblLayout w:type="fixed"/><w:tblLook w:val="04A0" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/></w:tblPr><w:tblGrid><w:gridCol w:w="2148"/><w:gridCol w:w="2148"/></w:tblGrid>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="2148" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">내부1</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="2148" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">내부2</w:t></w:r></w:p>
+</w:tc></w:tr>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="2148" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">내부3</w:t></w:r></w:p>
+</w:tc><w:tc><w:tcPr><w:tcW w:w="2148" w:type="dxa"/></w:tcPr><w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">내부4</w:t></w:r></w:p>
+</w:tc></w:tr>
+</w:tbl>
+<w:p/></w:tc></w:tr>
+</w:tbl>
+<w:p><w:pPr><w:jc w:val="both"/></w:pPr><w:r><w:t xml:space="preserve">표 뒤 문장.</w:t></w:r></w:p>
+<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>
+</w:body>
+</w:document>

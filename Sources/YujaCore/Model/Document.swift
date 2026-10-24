@@ -76,11 +76,14 @@ public struct Cell: Equatable, Sendable {
     public var blocks: [Block]
     public var colSpan: Int
     public var rowSpan: Int
+    /// 원본 셀 폭 (pt). DOCX/PDF의 열 폭 계산용, 모르면 nil.
+    public var width: Double?
 
-    public init(blocks: [Block] = [], colSpan: Int = 1, rowSpan: Int = 1) {
+    public init(blocks: [Block] = [], colSpan: Int = 1, rowSpan: Int = 1, width: Double? = nil) {
         self.blocks = blocks
         self.colSpan = colSpan
         self.rowSpan = rowSpan
+        self.width = width
     }
 }
 
@@ -90,11 +93,24 @@ public struct ImageRef: Equatable, Sendable {
     /// 추출 후 저장된 상대 경로 (`<출력파일명>_assets/img_N.png`). 추출 전이면 nil.
     public var path: String?
     public var altText: String?
+    /// 원본 문서에 표시된 크기 (pt). 모르면 nil → 이미지 픽셀 크기를 쓴다.
+    public var size: ImageSize?
 
-    public init(sourceID: String, path: String? = nil, altText: String? = nil) {
+    public init(sourceID: String, path: String? = nil, altText: String? = nil, size: ImageSize? = nil) {
         self.sourceID = sourceID
         self.path = path
         self.altText = altText
+        self.size = size
+    }
+}
+
+public struct ImageSize: Equatable, Sendable {
+    public var width: Double
+    public var height: Double
+
+    public init(width: Double, height: Double) {
+        self.width = width
+        self.height = height
     }
 }
 

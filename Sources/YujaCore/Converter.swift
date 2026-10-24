@@ -79,7 +79,11 @@ public enum Converter {
         switch options.format {
         case .md: text = MarkdownExporter(options: options.markdown).export(document)
         case .txt: text = TextExporter().export(document)
-        case .docx: throw YujaError.notImplemented("DOCX 출력 (Phase 2 예정)")
+        case .docx:
+            // 이미지는 파일 안(word/media)에 들어가므로 따로 꺼내지 않는다.
+            // extractImages가 꺼져 있으면 자리표시 문단으로 대신한다.
+            try DocxExporter().write(document, resources: options.extractImages ? loaded.resources : nil, to: output)
+            return ConvertResult(output: output, assets: [])
         case .pdf: throw YujaError.notImplemented("PDF 출력 (Phase 4 예정)")
         }
 

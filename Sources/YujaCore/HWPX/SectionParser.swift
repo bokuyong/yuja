@@ -109,6 +109,8 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
     private var tables: [TableBuilder] = []
     private var textDepth = 0
     private var script: String?
+    /// hp:pic 안에서 hc:img보다 먼저 나오는 표시 크기(curSz)를 모았다가 그림 끝에서 블록을 만든다.
+    private var pictures: [(image: ImageRef?, size: ImageSize?)] = []
     /// hp:switch 안의 hp:default는 hp:case와 같은 내용의 대체 표기라 건너뛴다.
     private var skipDepth = 0
 
@@ -158,12 +160,27 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
         case "cellSpan":
             tables.last?.cell.colSpan = max(1, attributes["colSpan"].flatMap(Int.init) ?? 1)
             tables.last?.cell.rowSpan = max(1, attributes["rowSpan"].flatMap(Int.init) ?? 1)
+        case "cellSz":
+            if let w = attributes["width"].flatMap(Double.init), w > 0 { tables.last?.cell.width = w / 100 }
         case "subList":
             containers.append([])
 
+        case "pic":
+            pictures.append((nil, nil))
+        case "curSz", "sz":
+            // 그림 안에서만. curSz(현재 크기)를 우선하고, 없을 때만 sz를 쓴다. 단위 HWPUNIT = 1/7200 inch = 0.01pt
+            guard !pictures.isEmpty, name == "curSz" || pictures[pictures.count - 1].size == nil,
+                  let w = attributes["width"].flatMap(Double.init), let h = attributes["height"].flatMap(Double.init),
+                  w > 0, h > 0 else { break }
+            pictures[pictures.count - 1].size = ImageSize(width: w / 100, height: h / 100)
         case "img":
             if let id = attributes["binaryItemIDRef"] {
-                appendBlock(.image(ImageRef(sourceID: binaryItems[id] ?? id)))
+                let ref = ImageRef(sourceID: binaryItems[id] ?? id)
+                if pictures.isEmpty {
+                    appendBlock(.image(ref))
+                } else {
+                    pictures[pictures.count - 1].image = ref
+                }
             }
         case "script":
             script = ""
@@ -191,6 +208,11 @@ private final class SectionDelegate: NSObject, XMLParserDelegate {
             let text = (script ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
             if !text.isEmpty { appendBlock(.raw(text)) }
             script = nil
+        case "pic":
+            if let picture = pictures.popLast(), var image = picture.image {
+                image.size = picture.size
+                appendBlock(.image(image))
+            }
 
         case "subList":
             let blocks = fold(containers.removeLast())

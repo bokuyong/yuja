@@ -6,6 +6,8 @@
   <hp:p paraPrIDRef="6">
     <hp:run charPrIDRef="0">
       <hp:pic id="10" zOrder="0" numberingType="PICTURE">
+        <hp:orgSz width="7200" height="7200"/>
+        <hp:curSz width="3600" height="2400"/>
         <hp:shapeComment>그림입니다. 원본 그림의 이름: logo.png</hp:shapeComment>
         <hc:img binaryItemIDRef="image1" bright="0" contrast="0" effect="REAL_PIC" alpha="0"/>
       </hp:pic>

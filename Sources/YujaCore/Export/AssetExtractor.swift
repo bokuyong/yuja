@@ -1,12 +1,8 @@
 import Foundation
-import ImageIO
-import UniformTypeIdentifiers
 
 /// IR의 이미지를 `img_N.<ext>`로 꺼내고 ImageRef.path를 채운다.
 /// PNG/JPEG/GIF는 그대로, BMP 등 웹에서 못 쓰는 형식은 PNG로 바꾼다.
 enum AssetExtractor {
-    static let passthrough: Set<String> = ["png", "jpg", "jpeg", "gif"]
-
     struct Result {
         var document: Document
         var files: [URL]
@@ -51,24 +47,12 @@ enum AssetExtractor {
         mutating func write(_ sourceID: String) throws -> String {
             if let done = cache[sourceID] { return done }
 
-            let data = try resources.data(for: sourceID)
-            let ext = (sourceID as NSString).pathExtension.lowercased()
-            let index = files.count + 1
-
-            let (bytes, outExt): (Data, String)
-            if passthrough.contains(ext) {
-                (bytes, outExt) = (data, ext)
-            } else if let png = Self.convertToPNG(data) {
-                (bytes, outExt) = (png, "png")
-            } else {
-                (bytes, outExt) = (data, ext.isEmpty ? "bin" : ext)
-            }
-
-            let name = "img_\(index).\(outExt)"
+            let image = ImageData.normalized(try resources.data(for: sourceID), sourceID: sourceID)
+            let name = "img_\(files.count + 1).\(image.ext)"
             let url = directory.appendingPathComponent(name)
             do {
                 try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-                try bytes.write(to: url)
+                try image.data.write(to: url)
             } catch {
                 throw YujaError.writeFailed(url.path)
             }
@@ -77,16 +61,6 @@ enum AssetExtractor {
             let link = linkBase.isEmpty ? name : linkBase + "/" + name
             cache[sourceID] = link
             return link
-        }
-
-        static func convertToPNG(_ data: Data) -> Data? {
-            guard let source = CGImageSourceCreateWithData(data as CFData, nil),
-                  let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else { return nil }
-            let out = NSMutableData()
-            guard let dest = CGImageDestinationCreateWithData(out, UTType.png.identifier as CFString, 1, nil) else { return nil }
-            CGImageDestinationAddImage(dest, image, nil)
-            guard CGImageDestinationFinalize(dest) else { return nil }
-            return out as Data
         }
     }
 }

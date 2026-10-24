@@ -32,37 +32,37 @@
       <hp:tbl id="2" rowCnt="4" colCnt="4">
         <hp:tr>
           <hp:tc><hp:subList><hp:p paraPrIDRef="6"><hp:run charPrIDRef="1"><hp:t>구분</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="0" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="2"/></hp:tc>
+            <hp:cellAddr colAddr="0" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="2"/><hp:cellSz width="10000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p paraPrIDRef="6"><hp:run charPrIDRef="1"><hp:t>항목</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="1" rowAddr="0"/><hp:cellSpan colSpan="2" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="1" rowAddr="0"/><hp:cellSpan colSpan="2" rowSpan="1"/><hp:cellSz width="30000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p paraPrIDRef="6"><hp:run charPrIDRef="1"><hp:t>비고</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="3" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="3" rowAddr="0"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="10000" height="1000"/></hp:tc>
         </hp:tr>
         <hp:tr>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>금액</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="1" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="1" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="15000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>부가세</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="2" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="2" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="15000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"/></hp:p></hp:subList>
-            <hp:cellAddr colAddr="3" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="3" rowAddr="1"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="10000" height="1000"/></hp:tc>
         </hp:tr>
         <hp:tr>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>재료비</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="0" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="0" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="10000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>1,000</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="1" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="1" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="15000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>100</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="2" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="2" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="15000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>예시</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="3" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="3" rowAddr="2"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="10000" height="1000"/></hp:tc>
         </hp:tr>
         <hp:tr>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="1"><hp:t>합계</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="0" rowAddr="3"/><hp:cellSpan colSpan="2" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="0" rowAddr="3"/><hp:cellSpan colSpan="2" rowSpan="1"/><hp:cellSz width="25000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"><hp:t>100</hp:t></hp:run></hp:p></hp:subList>
-            <hp:cellAddr colAddr="2" rowAddr="3"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="2" rowAddr="3"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="15000" height="1000"/></hp:tc>
           <hp:tc><hp:subList><hp:p><hp:run charPrIDRef="0"/></hp:p></hp:subList>
-            <hp:cellAddr colAddr="3" rowAddr="3"/><hp:cellSpan colSpan="1" rowSpan="1"/></hp:tc>
+            <hp:cellAddr colAddr="3" rowAddr="3"/><hp:cellSpan colSpan="1" rowSpan="1"/><hp:cellSz width="10000" height="1000"/></hp:tc>
         </hp:tr>
       </hp:tbl>
     </hp:run>

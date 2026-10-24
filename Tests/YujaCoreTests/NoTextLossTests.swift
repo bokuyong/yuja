@@ -39,6 +39,11 @@ final class NoTextLossTests: XCTestCase {
         let txt = TextExporter().export(document)
         let txtMissing = TextProbe.missing(fragments, in: txt, markdown: false)
         XCTAssertTrue(txtMissing.isEmpty, "\(url.lastPathComponent) TXT 유실: \(txtMissing.prefix(10))", file: file, line: line)
+
+        let parts = try DocxExporter().parts(document, resources: nil)
+        let body = String(decoding: parts.first { $0.path == "word/document.xml" }!.data, as: UTF8.self)
+        let docxMissing = TextProbe.missing(fragments, in: DocxExporterTests.text(ofDocumentXML: body), markdown: false)
+        XCTAssertTrue(docxMissing.isEmpty, "\(url.lastPathComponent) DOCX 유실: \(docxMissing.prefix(10))", file: file, line: line)
     }
 
     private static func unescapeHTML(_ text: String) -> String {

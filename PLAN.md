@@ -134,8 +134,9 @@ struct Cell { var blocks: [Block]; var colSpan: Int; var rowSpan: Int }
 - 완료 기준: 픽스처 전부 변환 성공, 텍스트 유실 0 (원본 텍스트 전수 추출 후 출력에 포함 여부 검사하는 테스트 추가)
 
 ### Phase 2 — DOCX 출력 (2~3일)
-- [ ] OOXML 직접 생성(`document.xml`, `styles.xml`, `[Content_Types].xml`, `_rels`) — 외부 라이브러리 없이 ZIP 쓰기
-- [ ] heading 스타일 매핑(Heading1~6), 표(gridSpan/vMerge로 병합 재현), 이미지 삽입(`word/media`)
+- [x] OOXML 직접 생성(`document.xml`, `styles.xml`, `[Content_Types].xml`, `_rels`) — 외부 라이브러리 없이 ZIP 쓰기
+- [x] heading 스타일 매핑(Heading1~6), 표(gridSpan/vMerge로 병합 재현), 이미지 삽입(`word/media`)
+  - 원본 셀 폭(hp:cellSz)·그림 표시 크기(hp:curSz)를 IR에 추가해 열 폭·그림 크기 재현
 - [ ] 검증: Word·Pages·LibreOffice에서 열림 확인 (스크린샷 수동, 사용자 확인 필요)
 - 완료 기준: 픽스처 전부 DOCX 생성, LibreOffice headless로 PDF 변환이 에러 없이 됨(구조 유효성 대용)
 
